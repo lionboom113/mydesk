@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+<head>
+	<title>Material Components for the web</title>
+	<link rel="stylesheet"
+	href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<style>
+		:root {
+			--mdc-theme-primary: #323232;
+		}
+		body{
+			margin: 0px;
+		}
+		main{
+			margin: 8px;
+		}
+    .mdc-button{
+      margin: auto;
+    display: block;
+    margin-top: 30vh;
+    }
+	</style>
+</head>
+<body>
+<main class="unlogin">
+		<button class="mdc-button login">
+      Login via Google
+    </button>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+<script type="text/javascript" src="fire.js"></script>
+<script>
+window.mdc.autoInit();
+var user;
+var token;
+  // Using a redirect.
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Google Access Token.
+    token = result.credential.accessToken;
+  }
+  user = result.user;
+
+  if (user !== null) {
+    console.log(user);
+    $.cookie("user", JSON.stringify(user));
+    $.cookie("token", token);
+    window.location.replace("index2.html");
+  }
+});
+
+
+$("button.login").click(function(){
+// Start a sign in process for an unauthenticated user.
+var provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('profile');
+provider.addScope('email');
+firebase.auth().signInWithRedirect(provider);
+});
+</script>
+</body>
+</html

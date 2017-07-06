@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+<head>
+	<title>Material Components for the web</title>
+	<link rel="stylesheet"
+	href="node_modules/material-components-web/dist/material-components-web.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<style>
+		:root {
+			--mdc-theme-primary: #323232;
+		}
+		body{
+			margin: 0px;
+		}
+		main{
+			margin: 8px;
+		}
+	</style>
+</head>
+<body>
+<header class="mdc-toolbar">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+      <i class="mdc-toolbar__title mdc-toolbar__title--full material-icons ">&#xE5D2;</i>
+      <span class="mdc-toolbar__title">Thank you, <span class="username"></span></span>
+    </section>
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+    </section>
+  </div>
+</header>
+<main>
+		
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+<script type="text/javascript" src="fire.js"></script>
+<script>
+window.mdc.autoInit();
+var user = $.parseJSON($.cookie("user"));
+$(".username").text(user.displayName);
+console.log(user);
+</script>
+</body>
+</html>
